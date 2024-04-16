@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../enviroment/enviroment';
 
 @Component({
   selector: 'app-mfa',
@@ -31,6 +32,7 @@ export class MfaComponent {
   constructor(private fb: FormBuilder) { }
 
   public showErrorMessage = signal(false);
+  public showCodeErrorMessage = signal(false);
 
   ngOnInit(): void {
     this.mfaForm = this.fb.group({
@@ -63,9 +65,32 @@ export class MfaComponent {
     }
   }
 
+  /**
+ * Descripción de la función completa.
+ *
+ * @param {Event} event - El objeto de evento.
+ * @return {void} Esta función no devuelve ningún valor.
+ */
   public mfaAction(event: Event): void {
-    console.log(this.mfaForm.valid)
+
+    const form = this.mfaForm.controls;
+    let totalStringCode:string = '';
+
     if (this.mfaForm.valid) {
+
+      totalStringCode =
+      form['code_number1'].value +
+      form['code_number2'].value +
+      form['code_number3'].value +
+      form['code_number4'].value +
+      form['code_number5'].value +
+      form['code_number6'].value;
+
+      if(totalStringCode === environment.MFACODE){
+        location.href = '';
+      }else{
+        this.showCodeErrorMessage.update(value => true);
+      }
 
     } else {
       this.showErrorMessage.update(value => !value);

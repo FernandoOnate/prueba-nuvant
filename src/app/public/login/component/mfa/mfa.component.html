@@ -16,10 +16,12 @@
         @if(showErrorMessage()){
           <span style="color:red;">Necesitas completar todos los campos</span>
         }
-
+        @if(showCodeErrorMessage()){
+          <span style="color:red; font-size: 1.3rem;">El código no es correcto.</span>
+        }
         <div class="flex f_align_center button_container help_container">
-            <button mat-raised-button [disabled]="!mfaForm.valid " type="submit">Enviar</button>
+            <button [disabled]="!mfaForm.valid " type="submit" mat-flat-button>Enviar</button>
         </div>
     </form>
-</article>
+  </article>
 </main>

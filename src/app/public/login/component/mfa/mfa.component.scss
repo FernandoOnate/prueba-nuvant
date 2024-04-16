@@ -49,21 +49,22 @@ main {
 
             input {
               background: #FFFFFF 0% 0% no-repeat padding-box;
-              border: 1px solid #aaaaaa;
+              border: none;
+              border: 3px solid #aaaaaa;
               border-radius: 10px !important;
               padding: 2rem 0;
               margin: 0rem 1rem;
               text-align: center;
               font-size: 1.56rem;
-              min-width: 3rem;
               margin-top: 1rem;
-              max-width: 100px;
+              max-width: 4rem;
+              max-height: 1.5rem;
             }
 
           }
 
           input:focus {
-            border: 1px solid blue !important;
+            border: 3px solid #7DE415 !important;
 
           }
         }
@@ -96,14 +97,12 @@ main {
           }
 
           >button {
-            padding: 1rem 2.4rem;
-            border-radius: 0.6rem !important;
-            background: #d25a19 0% 0% no-repeat padding-box;
-            font: normal normal 500 20px/23px arial;
-            // letter-spacing: 0px;
-            // text-align: center;
-            color: #FFFFFF;
-            // border: none;
+            padding: 2rem 2.4rem ;
+            border-radius: 0.6rem ;
+            background: #d25a19 0% 0% no-repeat padding-box ;
+            font: normal normal 400 16px/17px arial !important ;
+            color: #FFFFFF ;
+            // border: none ;
           }
         }
 

@@ -39,17 +39,21 @@ export default class LoginComponent {
 
   public loginForm: FormGroup = new FormGroup({});
 
+  // para controlar si se muestra o no la contraseña
   public showingPassword = signal(false);
   public passwordType = signal('password');
-  public showMfaComponent = signal(false);
+
+  // mensaje de error de material al login
   public showErrorMessage = signal(false);
+
+  // para mostrar el componente de mfa
+  public showMfaComponent = signal(true);
   public showInvalidCredentials = signal(false);
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog
-  ) {
-  }
+  ) {}
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.minLength(1), Validators.email]],

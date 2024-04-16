@@ -14,7 +14,7 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, Ma
     Por favor vuelve a intentarlo.
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-button mat-dialog-close style="background-color:orange; color:white">Ok</button>
   </mat-dialog-actions>`,
   standalone: true,
   imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent,MatDialogModule],

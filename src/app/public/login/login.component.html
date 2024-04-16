@@ -5,31 +5,35 @@
 
   <article class="transparent-inputs">
 
-    @if(!showMfaComponent()){
-    <form (submit)="loginAction($event)" [formGroup]="loginForm">
-      <h2 class="login-title">Login prueba Nuvant</h2>
-      <mat-form-field appearance="fill">
-        <mat-label>Correo o usuario</mat-label>
-        <input formControlName="email" matInput placeholder="example@nuvant.com" required>
-        <mat-icon matSuffix>person</mat-icon>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Contraseña</mat-label>
-        <input formControlName="password" type="{{passwordType()}}" matInput placeholder="******" required>
-        <mat-icon (click)="changeVisibility()" class="pointer"
-          matSuffix>@if(showingPassword()){block}@else{remove_red_eye}</mat-icon>
-      </mat-form-field>
-      @if(showErrorMessage()){
-      <span style="color:red;">Necesitas completar todos los campos</span>
+    @defer(when showMfaComponent() == false ){
+      @if(!showMfaComponent()){
+        <form (submit)="loginAction($event)" [formGroup]="loginForm">
+          <h2 class="login-title">Login prueba Nuvant</h2>
+          <mat-form-field appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input formControlName="email" matInput placeholder="example@nuvant.com" required>
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input formControlName="password" type="{{passwordType()}}" matInput placeholder="******" required>
+            <mat-icon (click)="changeVisibility()" class="pointer"
+              matSuffix>@if(showingPassword()){block}@else{remove_red_eye}</mat-icon>
+          </mat-form-field>
+          @if(showErrorMessage()){
+          <span style="color:red;">Necesitas completar todos los campos</span>
+          }
+          <div class="init-section">
+            <button>Iniciar sesión</button>
+          </div>
+        </form>
       }
-      <div class="init-section">
-        <button>Iniciar sesión</button>
-      </div>
-    </form>
     }
     <!-- -------------- -->
-    @if(showMfaComponent()){
-    <app-mfa></app-mfa>
+    @defer(when showMfaComponent() == true){
+      @if(showMfaComponent()){
+        <app-mfa></app-mfa>
+      }
     }
   </article>
 
