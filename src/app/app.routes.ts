@@ -27,7 +27,7 @@ export const routes: Routes = [
       {
         path: 'epidose-detail',
         title: 'Buscar episodio',
-        loadComponent: () => import('./private/dashboard/item-detail/item-detail.component'),
+        loadComponent: () => import('./private/dashboard/episode-detail/episode-detail.component'),
         pathMatch:'full'
       },
       {

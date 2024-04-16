@@ -5,7 +5,7 @@ export const environment = {
   EMAIL:'prueba@nuvantglobal.com',
   PASSWORD:'Nu12345',
   API_URL:'https://rickandmortyapi.com/api/character',
-  API_URLid:'https://rickandmortyapi.com/api/character/1,183,'
+  API_URL_EPISODE:'https://rickandmortyapi.com/api/episode'
 
 }
 

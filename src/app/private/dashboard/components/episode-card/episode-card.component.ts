@@ -3,15 +3,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'app-character-card',
+  selector: 'app-episode-card',
   standalone: true,
   imports: [MatCardModule, MatButtonModule],
-  templateUrl: './character-card.component.html',
-  styleUrl: './character-card.component.scss'
+  templateUrl: './episode-card.component.html',
+  styleUrl: './episode-card.component.scss'
 })
-export class CharacterCardComponent {
-
+export class EpisodeCardComponent {
   @Input() characterName: string = ''
   @Input() characterImage: string = ''
-
 }

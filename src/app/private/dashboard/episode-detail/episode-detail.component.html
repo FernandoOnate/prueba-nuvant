@@ -1,10 +1,10 @@
-<h1 style="padding:1rem;font-size:2rem;">Buscar por nombre</h1>
+<h1 style="padding:1rem;font-size:2rem;">Buscar episodio</h1>
 <div class="row">
   <form class="col s12">
     <div class="row">
       <div class="input-field col s12">
-        <input id="name" type="text" class="validate" (input)="nameChanging($event)">
-        <label for="name">Nombre</label>
+        <input id="episodio" type="number" class="validate" (input)="episodeChanging($event)">
+        <label for="episodio">Numero del episodio</label>
       </div>
     </div>
   </form>
@@ -27,8 +27,7 @@
               <p>Especie: <b> {{character.species == 'Human'?'Humano':'Alien'}}</b></p>
               <p>Génerol: <b> {{character.gender == 'Male'?'Hombre':'Mujer'}}</b></p>
             </div>
-            <app-character-card id="{{character.id}}" characterName="{{character.name}}"
-              characterImage="{{character.image}}"></app-character-card>
+            <app-episode-card></app-episode-card>
           </div>
           }
         }@else {
