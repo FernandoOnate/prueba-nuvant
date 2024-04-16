@@ -9,7 +9,7 @@ import { JsonPipe } from '@angular/common';
 @Component({
   selector: 'app-items-list',
   standalone: true,
-  imports: [CharacterCardComponent, MatProgressSpinnerModule, MatPaginatorModule, JsonPipe,],
+  imports: [CharacterCardComponent, MatProgressSpinnerModule, MatPaginatorModule, JsonPipe],
   templateUrl: './items-list.component.html',
   styleUrl: './items-list.component.scss',
   providers: [{ provide: MatPaginatorIntl }],

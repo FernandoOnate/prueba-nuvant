@@ -20,7 +20,13 @@ export const routes: Routes = [
       },
       {
         path: 'detail',
-        title: 'Detalle',
+        title: 'Buscar por nombre',
+        loadComponent: () => import('./private/dashboard/item-detail/item-detail.component'),
+        pathMatch:'full'
+      },
+      {
+        path: 'epidose-detail',
+        title: 'Buscar episodio',
         loadComponent: () => import('./private/dashboard/item-detail/item-detail.component'),
         pathMatch:'full'
       },
