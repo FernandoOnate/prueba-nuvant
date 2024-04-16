@@ -1,0 +1,15 @@
+
+<h1 style="padding:1rem;font-size:2rem;">Listado de personajes de rick & morty</h1>
+@if(!cs.loading()){
+  <section class="flex cards-container">
+    @for(character of cs.characters();track character.id){
+      <app-character-card characterName="{{character.name}}"  characterImage="{{character.image}}"></app-character-card>
+    }
+  </section>
+
+}@else{
+  <section class="flex spiner-container">
+    <mat-spinner></mat-spinner>
+  </section>
+}
+

@@ -2,6 +2,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths":{
+      "@models/*":["./src/app/models/*"],
+      "@services/*":["./src/app/services/*"],
+      "@enviroment/*":["./src/app/enviroment/*"],
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

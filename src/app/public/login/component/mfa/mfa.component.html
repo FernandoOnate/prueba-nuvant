@@ -5,12 +5,12 @@
         <h2 class="mfa-title">Hemos enviado un codigo (MFA) de verificación a tu correo</h2>
         <div class="flex form-fields">
           <div class="flex fields">
-            <input type="text" formControlName="code_number1" maxlength="1" (keyup)="moveToNextInput($event)" required>
-            <input type="text" formControlName="code_number2" maxlength="1" (keyup)="moveToNextInput($event)" required>
-            <input type="text" formControlName="code_number3" maxlength="1" (keyup)="moveToNextInput($event)" required>
-            <input type="text" formControlName="code_number4" maxlength="1" (keyup)="moveToNextInput($event)" required>
-            <input type="text" formControlName="code_number5" maxlength="1" (keyup)="moveToNextInput($event)" required>
-            <input type="text" formControlName="code_number6" maxlength="1" (keyup)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number1" maxlength="1" (keydown)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number2" maxlength="1" (keydown)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number3" maxlength="1" (keydown)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number4" maxlength="1" (keydown)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number5" maxlength="1" (keydown)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number6" maxlength="1" (keydown)="moveToNextInput($event)" required>
           </div>
         </div>
         @if(showErrorMessage()){

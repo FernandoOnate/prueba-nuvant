@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { environment } from '../../enviroment/enviroment';
 import { MatDialogModule, MatDialog, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent, } from '@angular/material/dialog';
 import { GenericDialog } from '../shared/components/simple-dialog/simple-dialog.component';
+import { LoginServiceService } from '@services/login-service.service';
+import { User } from '@models/User.model';
 
 
 @Component({
@@ -47,17 +49,20 @@ export default class LoginComponent {
   public showErrorMessage = signal(false);
 
   // para mostrar el componente de mfa
-  public showMfaComponent = signal(true);
+  public showMfaComponent = signal(false);
   public showInvalidCredentials = signal(false);
 
   constructor(
     private fb: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private loginService: LoginServiceService
   ) {}
+  // public loginService = inject(LoginServiceService); // se podria asi de la nueva forma
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.minLength(1), Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(1)]],
+      email: ['prueba@nuvantglobal.com', [Validators.required, Validators.minLength(5), Validators.email]],
+      password: ['Nu12345', [Validators.required, Validators.minLength(5)]],
     });
   }
 
@@ -66,10 +71,16 @@ export default class LoginComponent {
     event.preventDefault();
     const emailInputValue = this.loginForm.controls['email'].value;
     const passwordInputValue = this.loginForm.controls['password'].value;
+    const user = new User();
 
     if (this.loginForm.valid) {
 
-      if (emailInputValue == environment.EMAIL && passwordInputValue == environment.PASSWORD) {
+      user._email = emailInputValue;
+      user._password = passwordInputValue;
+
+      const logged = this.loginService.login(user);
+
+      if (logged) {
 
         this.showMfaComponent.update(value => true);
         this.showInvalidCredentials.update(value => false);

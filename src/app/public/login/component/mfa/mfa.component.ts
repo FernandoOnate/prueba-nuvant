@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../enviroment/enviroment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mfa',
@@ -29,19 +30,19 @@ import { environment } from '../../../../enviroment/enviroment';
 })
 export class MfaComponent {
   public mfaForm: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private router:Router) { }
 
   public showErrorMessage = signal(false);
   public showCodeErrorMessage = signal(false);
 
   ngOnInit(): void {
     this.mfaForm = this.fb.group({
-      code_number1: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
-      code_number2: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
-      code_number3: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
-      code_number4: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
-      code_number5: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
-      code_number6: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
+      code_number1: ['1', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
+      code_number2: ['2', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
+      code_number3: ['3', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
+      code_number4: ['4', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
+      code_number5: ['5', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
+      code_number6: ['6', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
     });
   }
 
@@ -87,7 +88,7 @@ export class MfaComponent {
       form['code_number6'].value;
 
       if(totalStringCode === environment.MFACODE){
-        location.href = '';
+        this.router.navigate(["dashboard"]);
       }else{
         this.showCodeErrorMessage.update(value => true);
       }
