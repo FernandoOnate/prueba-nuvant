@@ -1,0 +1,76 @@
+main {
+  height: 100%;
+  // background-color: #263238;
+  background-image: url('https://random-image-pepebigotes.vercel.app/api/random-image');
+  display: grid;
+  grid-template-columns: 60% 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  >article{
+
+    background-color: rgba(128, 128, 128, 0.268);
+    backdrop-filter: blur(8px);
+    padding-inline: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+      form input::placeholder{
+        color: white;
+        font-size: .8rem;
+      }
+
+      .login-title {
+          color: white !important;
+          font-size: 3rem;
+          margin-bottom: 5rem;
+      }
+
+      .init-section{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 20px;
+
+          button {
+              padding: 1rem;
+              background-color: #d25a19;
+              color: white;
+              border: none;
+              cursor: pointer;
+              font-size: 17px;
+          }
+
+          span{
+              color: white;
+              font-size: 16px;
+              cursor: pointer;
+          }
+      }
+  }
+
+  .mat-mdc-form-field {
+      width: 100% !important;
+  }
+
+  .pointer{
+      cursor: pointer !important;
+  }
+
+  @media (max-width:1317px) {
+    grid-template-columns: 30% 70%;
+  }
+  @media (max-width:631px) {
+    grid-template-columns: 0% 100%;
+  }
+  @media (max-width:300px) {
+    >article{
+      overflow-y:auto;
+      padding: 1rem 0 0 0;
+    }
+  }
+
+}
+

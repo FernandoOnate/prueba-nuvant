@@ -1,0 +1,25 @@
+<main>
+  <article class="flex column right_form_col code_confirmation_form_container">
+    <form (submit)="mfaAction($event)" [formGroup]="mfaForm" class="code_confirmation_form">
+      <mat-icon class="lock-icon">lock_outline</mat-icon>
+        <h2 class="mfa-title">Hemos enviado un codigo (MFA) de verificación a tu correo</h2>
+        <div class="flex form-fields">
+          <div class="flex fields">
+            <input type="text" formControlName="code_number1" maxlength="1" (keyup)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number2" maxlength="1" (keyup)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number3" maxlength="1" (keyup)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number4" maxlength="1" (keyup)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number5" maxlength="1" (keyup)="moveToNextInput($event)" required>
+            <input type="text" formControlName="code_number6" maxlength="1" (keyup)="moveToNextInput($event)" required>
+          </div>
+        </div>
+        @if(showErrorMessage()){
+          <span style="color:red;">Necesitas completar todos los campos</span>
+        }
+
+        <div class="flex f_align_center button_container help_container">
+            <button mat-raised-button [disabled]="!mfaForm.valid " type="submit">Enviar</button>
+        </div>
+    </form>
+</article>
+</main>
