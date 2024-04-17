@@ -1,0 +1,16 @@
+<h1 mat-dialog-title style="text-align: center;">Información del personaje</h1>
+<mat-dialog-content class="mat-typography" style="max-width: 600px;">
+  <h2>{{charName}}</h2>
+  <p>
+    <img class="character-img" [srcset]="charImage" [alt]="charName">
+  </p>
+  <p>
+    <b>{{charName}}</b>  es  <b>{{charGender == 'Male' ? 'hombre':'mujer'}}</b> y aparece en <b>{{charEpisodes.length}}</b> episodios,
+    su raza es <b>{{charSpecies == 'Human' ? 'humano':'alien'}}</b>, su estado actual es <b>{{charStatus == 'Alive'?'vivo':'no vivo'}}.</b>
+  </p>
+ 
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close mat-flat-button color="primary">Ok</button>
+</mat-dialog-actions>
+

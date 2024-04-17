@@ -7,7 +7,6 @@ interface State {
   characters: any;
   loading: boolean;
   arrayLength:number,
-
 }
 @Injectable({
   providedIn: 'root'
@@ -68,6 +67,7 @@ export class CharactersService {
     })
 
   }
+
   // public getAllCharacters() {
   //   this.http.get<Results>(environment.API_URL).pipe(delay(500)).subscribe(response => {
 

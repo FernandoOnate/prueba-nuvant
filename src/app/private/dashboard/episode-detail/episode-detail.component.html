@@ -1,39 +1,43 @@
 <h1 style="padding:1rem;font-size:2rem;">Buscar episodio</h1>
-<div class="row">
+<div class="row" >
   <form class="col s12">
-    <div class="row">
+    <div class="row" style="margin-bottom:0;">
       <div class="input-field col s12">
-        <input id="episodio" type="number" class="validate" (input)="episodeChanging($event)">
-        <label for="episodio">Numero del episodio</label>
+        <input id="episodio" type="number" class="validate" (input)="episodeChanging($event)" >
+        <label for="episodio">Numero del episodio (ej: 07 o 7)</label>
       </div>
     </div>
   </form>
 </div>
 <div class="row">
   <div class="col s12">
-    @if(scs.loading()){
-      <section class="flex spiner-container">
-        <mat-spinner></mat-spinner>
-      </section>
+    @if(es.loadingEpisode()){
+    <section class="flex spiner-container">
+      <mat-spinner></mat-spinner>
+    </section>
     }@else {
+      @defer(when es.episode().episode){
+        <section class="episode-info">
+          <h2 style="margin:0 0 .5rem 0;">Episodio: <b>{{es.episode().episode}} | {{es.episode().name}}</b></h2>
+          <p style="margin:0;">
+            En este episodio aparecen <b>{{es.characters().length}}</b> personajes y
+            fue emitido en <b>{{es.episode().air_date}}.</b>
+          </p>
 
-      <section class="flex cards-container">
-        @if(!scs.notFound()){
-          @for(character of scs.characters();track $index){
-          <div class="tooltip">
-            <div class="tooltiptext">
-              <p>Nombre: <b> {{character.name}} </b></p>
-              <p>Estado: <b> {{character.status=='Dead' ? 'Fallecido':'Vivo'}}</b></p>
-              <p>Especie: <b> {{character.species == 'Human'?'Humano':'Alien'}}</b></p>
-              <p>Génerol: <b> {{character.gender == 'Male'?'Hombre':'Mujer'}}</b></p>
-            </div>
-            <app-episode-card></app-episode-card>
-          </div>
-          }
-        }@else {
-          <p>{{scs.notFound()}}</p>
-        }
-      </section>
+        </section>
+      }
+
+    <section class="flex cards-container">
+      @if(!es.notFound()){
+
+      @for(character of es.characters();track $index){
+        <app-episode-card id="{{character.id}}" characterName="{{character.name}}"
+          characterImage="{{character.image}}"></app-episode-card>
+      }
+      }@else {
+      <p>{{es.notFound()}}</p>
+      }
+    </section>
 
     }
   </div>

@@ -17,7 +17,6 @@ import { JsonPipe } from '@angular/common';
 export default class ItemsListComponent {
 
   constructor(public cs: CharactersService) {
-    // this.cs.getAllCharacters();
     this.cs.getByIds(this.totalIds());
 
   }
@@ -34,11 +33,9 @@ export default class ItemsListComponent {
   handlePageEvent(e: PageEvent) {
 
     this.pageEvent = e;
-    // this.arrayLength.update(value =>e.length);
     this.pageSize.update(value => e.pageSize);
     this.pageIndex.update(value => e.pageIndex);
 
-    // this.paginating.
     this.totalIds.update(value => this.cs.searchByPage(this.pageIndex(), this.arrayLength()));
     this.cs.getByIds(this.totalIds());
   }

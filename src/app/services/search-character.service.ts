@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '@enviroment/enviroment';
-import { delay } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { Results } from '../inferfaces/characters-res';
+import { Character } from '../inferfaces/character';
 
 interface State {
   info: object,
   characters: Array<any>,
   loading: boolean,
-  notFound:string
+  notFound: string
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,10 +24,12 @@ export class SearchCharacterService {
     info: {},
     characters: [],
     loading: false,
-    notFound:''
+    notFound: ''
   });
 
+
   public loading = computed(() => this._result().loading);
+  public loadingCharacter = signal(false);
   public characters = computed(() => this._result().characters);
   public notFound = computed(() => this._result().notFound);
 
@@ -35,7 +39,7 @@ export class SearchCharacterService {
       info: {},
       characters: [],
       loading: true,
-      notFound:''
+      notFound: ''
     });
 
     this.http.get<Results>(environment.API_URL + `/?name=${name}`).pipe(delay(500)).subscribe({
@@ -44,25 +48,59 @@ export class SearchCharacterService {
           info: response.info,
           characters: response.results,
           loading: false,
-          notFound:''
+          notFound: ''
 
         })
 
       },
-      error:error=>{
+      error: error => {
         console.log(error.message)
         this._result.set({
           info: {},
           characters: [],
           loading: false,
-          notFound:'No hay resultados'
+          notFound: 'No hay resultados'
         })
       }
-    })
+    });
 
   }
 
-  getEpisodeById(id:number){
-    
+  // public getById(id:string){
+
+  //   // this._characterResult.set({
+  //   //   character:{},
+  //   //   loading:true
+  //   // });
+
+  //   this.loadingCharacter.update(v => true);
+
+  //    this.http.get<Character>(environment.API_URL+`/${id}`).subscribe({
+  //     next:res=>{
+  //       this._characterResult.set({
+  //         character:res,
+  //         loading:false
+  //       })
+  //       this.loadingCharacter.update(v => false);
+
+  //     },
+  //     error:err=>{
+  //       this._characterResult.set({
+  //         character:{},
+  //         loading:false
+  //       })
+  //       this.loadingCharacter.update(v => false);
+
+
+  //     }
+  //   });
+
+  // }
+  public getById(id:string){
+
+    return this.http.get<Character>(environment.API_URL+`/${id}`);
+
   }
+
+
 }

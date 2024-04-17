@@ -1,1 +1,12 @@
-<p>episode-card works!</p>
+
+<a href="javascript:void(0)" (click)="showDialog()" class="character-name-link">
+  <article class="character-card">
+    <header>
+      <h2>{{characterName}}</h2>
+    </header>
+    <p>
+      <img class="character-img" [srcset]="characterImage" [alt]="characterName">
+    </p>
+    <!-- <li>Aparace en: <b>{{characterEpisodes.length}}</b> episodios.</li> -->
+  </article>
+</a>

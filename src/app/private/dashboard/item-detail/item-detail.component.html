@@ -2,7 +2,7 @@
 <div class="row">
   <form class="col s12">
     <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s12" style="max-width: 40%;">
         <input id="name" type="text" class="validate" (input)="nameChanging($event)">
         <label for="name">Nombre</label>
       </div>
@@ -25,7 +25,7 @@
               <p>Nombre: <b> {{character.name}} </b></p>
               <p>Estado: <b> {{character.status=='Dead' ? 'Fallecido':'Vivo'}}</b></p>
               <p>Especie: <b> {{character.species == 'Human'?'Humano':'Alien'}}</b></p>
-              <p>Génerol: <b> {{character.gender == 'Male'?'Hombre':'Mujer'}}</b></p>
+              <p>Género: <b> {{character.gender == 'Male'?'Hombre':'Mujer'}}</b></p>
             </div>
             <app-character-card id="{{character.id}}" characterName="{{character.name}}"
               characterImage="{{character.image}}"></app-character-card>
